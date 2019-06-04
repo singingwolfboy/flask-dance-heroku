@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "supersekrit")
 app.config["HEROKU_OAUTH_CLIENT_ID"] = os.environ.get("HEROKU_OAUTH_CLIENT_ID")
 app.config["HEROKU_OAUTH_CLIENT_SECRET"] = os.environ.get("HEROKU_OAUTH_CLIENT_SECRET")
-heroku_bp = make_heroku_blueprint()
+heroku_bp = make_heroku_blueprint(scope="identity")
 app.register_blueprint(heroku_bp, url_prefix="/login")
 
 
