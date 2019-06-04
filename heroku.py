@@ -14,7 +14,6 @@ app.register_blueprint(heroku_bp, url_prefix="/login")
 def index():
     if not heroku.authorized:
         return redirect(url_for("heroku.login"))
-    print(heroku.token)
     resp = heroku.get("/account")
-    assert resp.ok
+    assert resp.ok, resp.text
     return "You are {email} on Heroku".format(email=resp.json()["email"])
